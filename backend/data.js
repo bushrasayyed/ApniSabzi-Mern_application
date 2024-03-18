@@ -134,4 +134,4 @@ const data = {  _id: '1',
       },
     ],
   };
-  export default data;
+  module.exports = data;
