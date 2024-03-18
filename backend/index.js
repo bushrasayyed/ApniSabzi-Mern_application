@@ -15,8 +15,10 @@ app.get("/", (req, res) => {
 
 
 
-app.use(express.json());
 
+app.use("/api/seed",  require("./routes/seedRoutes"));
+app.use("/api/products", require("./routes/productRoutes"));
+app.use(express.json());
 //  Available Routes
 app.use("/api/auth", require("./routes/auth"));
 // app.use("/api/editor", require("./routes/editor"));
@@ -25,26 +27,6 @@ app.get('/api/products',(req,res)=>{
   res.send(data.products);
   
   });
-  app.get('/api/products/slug/:slug', (req, res) => {
-      const product = data.products.find((x) => x.slug === req.params.slug);
-      if (product) {
-        res.send(product);
-      } else {
-        res.status(404).send({ message: 'Product Not Found' });
-      }
-    });
-  
-    app.get('/api/products/:id', (req, res) => {
-      const product = data.products.find((x) => x._id === req.params.id);
-      if (product) {
-        res.send(product);
-      } else {
-        res.status(404).send({ message: 'Product Not Found' });
-      }
-    });
-  
-
-
 
 app.listen(port, () => {
   console.log(`Serve at http://localhost:${port}`);
